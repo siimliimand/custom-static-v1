@@ -21,9 +21,7 @@ class ControllerFactory
         $method = $routeData[RoutesConfigurationInterface::METHOD] ?? null;
 
         if ($controllerClass === null || $action === null || $method === null) {
-            throw new InvalidRouteException(
-                translate('messages.error.invalid_route')
-            );
+            throw new InvalidRouteException('Invalid route');
         }
 
         if ($request->getMethod() === Request::METHOD_OPTIONS) {
@@ -31,11 +29,7 @@ class ControllerFactory
         }
 
         if ($method !== $request->getMethod()) {
-            throw new InvalidRouteException(
-                translate('messages.error.invalid_method', [
-                    'method' => $method
-                ])
-            );
+            throw new InvalidRouteException('Invalid route');
         }
 
         $parameters = $routeData[RoutesConfigurationInterface::PARAMETERS] ?? null;

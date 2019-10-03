@@ -2,6 +2,8 @@
 
 namespace App\RequestHandler;
 
+use Exception;
+
 class SetterGetter
 {
     public const TYPE_GET = '_GET';
@@ -55,7 +57,11 @@ class SetterGetter
                 $this->setArray($_POST);
                 $jsonData = file_get_contents('php://input');
                 if ($jsonData !== '') {
-                    $contents = json_decode($jsonData, true, 512, JSON_THROW_ON_ERROR);
+                    try {
+                        $contents = json_decode($jsonData, true, 512, JSON_THROW_ON_ERROR);
+                    } catch(Exception $exception) {
+                        $contents = null;
+                    }
                     if (is_array($contents)) {
                         $this->setArray($contents);
                     }

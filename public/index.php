@@ -14,6 +14,7 @@ require dirname(__DIR__).'/vendor/autoload.php';
 define('ROOT_PATH', __DIR__ . '/../');
 define('CONFIG_PATH', ROOT_PATH . 'config/');
 define('SRC_PATH', ROOT_PATH . 'src/');
+define('IMAGES_PATH', __DIR__ . '/images/');
 
 require_once ROOT_PATH . 'include/global-functions.php';
 
